@@ -23,6 +23,8 @@ gem "json", "~> 2.7.2"
 
 gem "devise"
 
+gem "fiddle"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
