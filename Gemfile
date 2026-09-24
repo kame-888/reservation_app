@@ -25,6 +25,12 @@ gem "devise"
 
 gem "fiddle"
 
+# Use Bootstrap
+gem 'bootstrap', '~> 5.3.2'
+gem 'jquery-rails'
+
+gem "sassc-rails"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
