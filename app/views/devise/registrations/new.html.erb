@@ -1,29 +1,4 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password %></p>
-    <% if @minimum_password_length %>
-      <p><em>(<%= @minimum_password_length %> characters minimum)</em></p>
-    <% end %>
-    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :confirmed_password %></p>
-    <p><%= f.password_field :confirmed_password, autocomplete: "new-password" %></p>
-  </div>
-
-  <div class="actions"><div class="container home-sections d-flex flex-row justify-content-center
-  align-items-center"
->
+  <div class="container home-sections d-flex flex-row justify-content-center align-items-center">
   <div class="login-section pt-3">
     <div class="card text-center pt-5 mx-auto" style="width: 23rem;">
       <h1>サインアップ画面</h1>
@@ -69,8 +44,3 @@
     </div>
   </div>
 </div>
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
