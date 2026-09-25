@@ -1,0 +1,40 @@
+ <%= flash[:notice] %>
+
+<div class="row">
+  <div class="col-xs-8">
+    <h3>宿泊施設一覧</h3>
+  </div>
+  <div class="col-xs-4 text-right">
+    <%= link_to "新規登録", new_room_path, class: "btn btn-primary" %>
+  </div>
+</div>
+<table class="table">
+  <tr>
+    <th>施設画像</th><th>施設名</th><th>紹介文</th><th>金額</th>
+  </tr>
+  <% @rooms.each do |room| %>
+    <tr>
+      <td>
+        <%= room.image %>
+      </td>
+      <td>
+        <%= room.name %>
+      </td>
+      <td>
+        <%= room.description %>
+      </td>
+      <td>
+        <%= room.price %>
+      </td>
+      <td>
+        <%= link_to "詳細", room, class:"btn btn-info" %>
+      </td>
+      <td>
+        <%= link_to "編集", edit_post_path(room), class:"btn btn-secondary" %>
+      </td>
+      <td>
+        <%= link_to "削除", room, data: {turbo_method: :delete, turbo_confirm: "宿泊施設を削除しますか？"}, class:"btn btn-danger" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,44 @@
+<%= form_with model: @room do |form| %>
+  <%# エラーメッセージ表示 %>
+  <% if @room.errors.any? %>
+    <ul class="errors">
+      <% @room.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= flash[:notice] %>
+
+  <div class="form-group">
+    <%= form.label :name, "施設名", class:"control-label" %>
+    <%= form.text_field :name, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, "紹介文", class:"control-label" %>
+    <%= form.text_area :description, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address, "住所", class:"control-label" %>
+    <%= form.text_field :adress, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price, "金額", class:"control-label" %>
+      <%= form.number_field :price, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :image, "宿泊施設画像", class:"control-label" %>
+    <%= form.file_field :image, class:"form-control" %>
+  </div>
+
+  <% if form.object.new_record? %>
+    <%= form.submit "登録", class:"btn btn-success" %>
+  <% else %>
+    <%= form.submit "更新", class:"btn btn-success" %>
+  <% end %>
+  <%= link_to "キャンセル", rooms_path, class: "btn btn-default" %>
+<% end %>

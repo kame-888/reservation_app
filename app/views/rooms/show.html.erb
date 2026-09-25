@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div><%= @room.image %></div>
+
+    <div class="page-header text-center">
+      <h2><%= @room.name %></h2>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><span class="glyphicon glyphicon-align-left"></span>紹介文</strong>
+      </div>
+      <div class="panel-body">
+        <p style="font-size: 16px; min-height: 60px;"><%= simple_format(@room.description) %></p>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel-heading">住所</div>
+      <div class="panel-body text-center">
+        <h3><%= @room.address %></h3>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel-heading">金額</div>
+      <div class="panel-body text-center">
+        <h3><%= @room.price %></h3>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 30px;">
+      <%= link_to "編集", edit_room_path(@room), class: "btn btn-info btn-lg" %>
+      <%= link_to "削除", @room, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-lg" %>
+      <%= link_to "一覧へ戻る", room_path, class: "btn btn-default btn-lg" %>
+    </div>
+
+  </div>
+</div>
