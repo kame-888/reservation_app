@@ -25,6 +25,10 @@
             <%= f.password_field :confirmed_password, class: "form-control", placeholder: "パスワード確認" %>
           </div>
 
+          <div class="mb-3">
+            <%= f.file_field :avatar, class: "form-control", placeholder: "プロフィール画像" %>
+          </div>
+
           <%= f.submit "サインアップ", class: "btn btn-primary w-100" %>
         <% end %>
 

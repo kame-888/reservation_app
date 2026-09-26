@@ -15,7 +15,9 @@
   <% @rooms.each do |room| %>
     <tr>
       <td>
-        <%= room.image %>
+        <% if @room.image.attached? %>
+          <%= image_tag @room.image %>
+        <% end %>
       </td>
       <td>
         <%= room.name %>

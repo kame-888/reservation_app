@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(post_params)
+    @room = Room.new(room_params)
 
     if @room.save
       redirect_to @room, notice: "宿泊施設情報を作成しました"
@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
   end
 
   def update
-    if @room.update(post_params)
+    if @room.update(room_params)
       redirect_to room_path(@room), notice: "更新しました", status: :see_other
     else
       render :edit, status: :unprocessable_entity
