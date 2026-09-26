@@ -1,12 +1,14 @@
 class RoomsController < ApplicationController
-  before_action :set_room_id, only: [ :show, :edit, :update, :destroy ]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_owner!, only: [:edit, :update, :destroy]
 
   def new
     @room = Room.new
   end
 
   def create
-    @room = Room.new(room_params)
+    @room = current_user.rooms.build(room_params)
 
     if @room.save
       redirect_to @room, notice: "宿泊施設情報を作成しました"
@@ -16,10 +18,10 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @Rooms = Room.order(created_at: :desc)
+    @rooms = Room.order(created_at: :desc)
   end
 
-  # before_actionで同一のアクションを定義
+  # before_actionでセット済み
   def show 
   end
   def edit
@@ -34,11 +36,7 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    if @room.destroy
-      redirect_to rooms_path, notice: "スケジュールを削除しました"
-    else
-      render :show, status: :unprocessable_entity
-    end
+    redirect_to rooms_path, notice: "宿泊施設情報を削除しました"
   end
 
   private
@@ -49,5 +47,9 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
+  end
+
+  def authorize_owner!
+    redirect_to root_path, alert: "権限がありません" unless @room.user_id == current_user.id
   end
 end
