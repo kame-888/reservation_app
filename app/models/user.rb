@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_one_attached :avatar
+
+  def full_name
+        "#{family_name} #{first_name}"
+    end
 end

@@ -7,8 +7,6 @@
       <h1>ログインできた！</h1>
       <p>full_name: <%= current_user.full_name %></p>
 
-      <p>username: <%= current_user.username %></p>
-
       <p>e-mail: <%= current_user.email %></p>
       
       <%= button_to "サインアウト", destroy_user_session_path, class: "fs-6 my-4 text-decoration-none text-info", method: :delete %>
