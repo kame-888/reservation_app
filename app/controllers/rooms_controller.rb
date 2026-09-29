@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @rooms = Room.order(created_at: :desc)
+    @rooms = current_user.rooms.order(created_at: :desc)
   end
 
   # before_actionでセット済み
