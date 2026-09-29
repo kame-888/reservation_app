@@ -1,0 +1,7 @@
+<h1>ユーザー詳細</h1>
+<p>名前：<%= @user.full_name %></p>
+<p>メール：<%= @user.email %></p>
+
+<% if @user == current_user %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
