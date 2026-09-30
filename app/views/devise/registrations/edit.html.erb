@@ -7,7 +7,7 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
-          <%= render "fields", f: f, password_placeholder: "新しいパスワード（変更しない場合は空欄）" %>
+          <%= render "form", f: f, password_placeholder: "新しいパスワード（変更しない場合は空欄）" %>
 
           <div class="mb-3">
             <%= f.password_field :current_password, class: "form-control",

@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room_id, only: [:show, :edit, :update, :destroy]
   before_action :authorize_owner!, only: [:edit, :update, :destroy]
 
   def new
@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @rooms = current_user.rooms.order(created_at: :desc)
+    @rooms = current_user.rooms.with_attached_image.order(created_at: :desc)
   end
 
   # before_actionでセット済み
@@ -36,7 +36,9 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    redirect_to rooms_path, notice: "宿泊施設情報を削除しました"
+    @room = current_user.rooms.find(params[:id])
+    @room.destroy
+    redirect_to rooms_path, notice: "登録施設を削除しました", status: :see_other
   end
 
   private

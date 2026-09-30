@@ -22,7 +22,7 @@
 
   <div class="form-group">
     <%= form.label :address, "住所", class:"control-label" %>
-    <%= form.text_field :adress, class:"form-control" %>
+    <%= form.text_field :address, class:"form-control" %>
   </div>
 
   <div class="form-group">
@@ -40,5 +40,5 @@
   <% else %>
     <%= form.submit "更新", class:"btn btn-success" %>
   <% end %>
-  <%= link_to "キャンセル", rooms_path, class: "btn btn-default" %>
+  <%= link_to "キャンセル", root_path, class: "btn btn-default" %>
 <% end %>

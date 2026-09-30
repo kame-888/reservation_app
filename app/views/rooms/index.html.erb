@@ -15,8 +15,9 @@
   <% @rooms.each do |room| %>
     <tr>
       <td>
-        <% if @room.image.attached? %>
-          <%= image_tag @room.image %>
+        <% if room.image.attached? %>
+          <%= image_tag room.image %>
+        <% else %>
         <% end %>
       </td>
       <td>
@@ -32,7 +33,7 @@
         <%= link_to "詳細", room, class:"btn btn-info" %>
       </td>
       <td>
-        <%= link_to "編集", edit_post_path(room), class:"btn btn-secondary" %>
+        <%= link_to "編集", edit_room_path(room), class:"btn btn-secondary" %>
       </td>
       <td>
         <%= link_to "削除", room, data: {turbo_method: :delete, turbo_confirm: "宿泊施設を削除しますか？"}, class:"btn btn-danger" %>

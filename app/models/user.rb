@@ -6,6 +6,8 @@ class User < ApplicationRecord
   
   has_one_attached :avatar
 
+  has_many :rooms, dependent: :destroy
+
   def full_name
         "#{family_name} #{first_name}"
     end
