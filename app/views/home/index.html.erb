@@ -17,8 +17,12 @@
 
       <%= button_to "サインアウト", destroy_user_session_path, class: "fs-6 my-4 text-decoration-none text-info", method: :delete %>
 
-      
     </div>
+
+    <%= form_with url: home_search_path, method: :get do %>
+      <%= text_field_tag :keyword, params[:keyword] %>
+      <%= submit_tag "検索" %>
+    <% end %>
 
     
   <% elsif %>

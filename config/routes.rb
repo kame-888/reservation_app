@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :rooms
   get "home/index"
+  get "home/search", to: "home#search"
   root "home#index"
 
 
