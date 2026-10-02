@@ -1,33 +1,4 @@
-<div class="container home-sections d-flex flex-row justify-content-center
-  align-items-center"
->
-  
-  <% if current_user %>
-    <div class="card text-center pt-5 mx-auto" style="width:23rem">
-      <h1>ログインできた！</h1>
-      <p>full_name: <%= current_user.full_name %></p>
-
-      <p>e-mail: <%= current_user.email %></p>
-      
-      <div>
-        <%= link_to "施設登録", new_room_path %>
-        <%= link_to "登録済み施設", rooms_path %>
-        <%= link_to "アカウント設定", current_user %>
-      </div>
-
-      <%= button_to "サインアウト", destroy_user_session_path, class: "fs-6 my-4 text-decoration-none text-info", method: :delete %>
-
-    </div>
-
-    <%= form_with url: home_search_path, method: :get do %>
-      <%= text_field_tag :keyword, params[:keyword] %>
-      <%= submit_tag "検索" %>
-    <% end %>
-
-    
-  <% elsif %>
-    <h1>ログインしていない</h1>
-    <%= button_to "サインイン", new_user_session_path, class: "fs-6 my-4 text-decoration-none text-info" %>
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
-  <% end %>
-</div>
+<%= form_with url: home_search_path, method: :get do %>
+  <%= text_field_tag :keyword, params[:keyword] %>
+  <%= submit_tag "検索" %>
+<% end %>

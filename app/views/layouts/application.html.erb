@@ -26,14 +26,27 @@
 
         <div class="col-4 text-end">
           <% if current_user %>
-            <span>ログインできた</span>
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+                <%= current_user.full_name %>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end">
+                <%= link_to "施設の新規登録", new_room_path, class: "dropdown-item" %>
+                <%= link_to "予約一覧", root_path, class: "dropdown-item" %>
+                <%= link_to "登録済み施設一覧", rooms_path, class: "dropdown-item" %>
+                <%= link_to "アカウント設定", user_path(current_user), class: "dropdown-item" %>
+                <hr class="dropdown-divider">
+                <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </div>
           <% else %>
             <%= link_to "サインイン", new_user_session_path, class: "text-decoration-none text-info me-2" %>
             <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
-      
+
       <%= yield %>
     </div>
   </body>
