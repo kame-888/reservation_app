@@ -1,3 +1,32 @@
-<% @rooms.each do |room| %>
-  <p><%= room.name %></p>
-<% end %>
+<div class="row">
+  <% @rooms.each do |room| %>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+
+        <% if room.image.attached? %>
+          <%= image_tag room.image, class: "card-img-top" %>
+        <% end %>
+
+        <div class="card-body">
+          <h4 class="card-title text-center border-bottom pb-2"><%= room.name %></h4>
+
+          <h6 class="fw-bold">紹介文</h6>
+          <div style="min-height: 60px;">
+            <%= simple_format(room.description) %>
+          </div>
+
+          <h6 class="fw-bold mt-3">住所</h6>
+          <p class="text-center fs-5"><%= room.address %></p>
+
+          <h6 class="fw-bold mt-3">金額</h6>
+          <p class="text-center fs-5"><%= room.price %>～</p>
+        </div>
+
+        <div class="card-footer text-center bg-transparent border-0 pb-3">
+          <%= link_to "予約に進む", room, class: "btn btn-info btn-lg" %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

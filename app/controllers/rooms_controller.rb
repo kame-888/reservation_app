@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.build(room_params)
 
     if @room.save
-      redirect_to @room, notice: "宿泊施設情報を作成しました"
+      redirect_to rooms_path, notice: "宿泊施設情報を作成しました"
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,43 +1,41 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 offset-md-2">
 
-    <div>
-      <% if @room.image.attached? %>
-        <%= image_tag @room.image %>
-      <% end %>
-    </div>
+    <% if @room.image.attached? %>
+      <div class="text-center mb-4">
+        <%= image_tag @room.image, class: "img-fluid rounded" %>
+      </div>
+    <% end %>
 
-    <div class="page-header text-center">
+    <div class="text-center border-bottom pb-2 mb-4">
       <h2><%= @room.name %></h2>
     </div>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong><span class="glyphicon glyphicon-align-left"></span>紹介文</strong>
-      </div>
-      <div class="panel-body">
-        <p style="font-size: 16px; min-height: 60px;"><%= simple_format(@room.description) %></p>
+    <div class="card mb-3">
+      <div class="card-header fw-bold">紹介文</div>
+      <div class="card-body fs-5" style="min-height: 60px;">
+        <%= simple_format(@room.description) %>
       </div>
     </div>
 
-    <div>
-      <div class="panel-heading">住所</div>
-      <div class="panel-body text-center">
-        <h3><%= @room.address %></h3>
+    <div class="card mb-3">
+      <div class="card-header fw-bold">住所</div>
+      <div class="card-body text-center">
+        <h3 class="mb-0"><%= @room.address %></h3>
       </div>
     </div>
 
-    <div>
-      <div class="panel-heading">金額</div>
-      <div class="panel-body text-center">
-        <h3><%= @room.price %></h3>
+    <div class="card mb-3">
+      <div class="card-header fw-bold">金額</div>
+      <div class="card-body text-center">
+        <h3 class="mb-0"><%= number_to_currency(@room.price, unit: "円", format: "%n%u", precision: 0) %></h3>
       </div>
     </div>
 
-    <div class="text-center" style="margin-top: 30px;">
+    <div class="text-center my-4">
       <%= link_to "編集", edit_room_path(@room), class: "btn btn-info btn-lg" %>
       <%= link_to "削除", @room, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-lg" %>
-      <%= link_to "一覧へ戻る", rooms_path, class: "btn btn-default btn-lg" %>
+      <%= link_to "一覧へ戻る", :back, class: "btn btn-secondary btn-lg" %>
     </div>
 
   </div>

@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    @rooms = Room.search(params[:keyword])
+    @rooms = Room.search(params[:keyword]).with_attached_image
   end
 
 end
