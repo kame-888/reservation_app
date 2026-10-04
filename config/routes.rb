@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :rooms
   get "home/index"
   get "home/search", to: "home#search"
+  resources :rooms do
+    resources :reservations, only: [:create] do
+      post :confirm, on: :collection
+    end
+  end
   root "home#index"
 
 

@@ -21,8 +21,9 @@ class RoomsController < ApplicationController
     @rooms = current_user.rooms.with_attached_image.order(created_at: :desc)
   end
 
-  # before_actionでセット済み
-  def show 
+  # before_actionでIDはセット済み
+  def show
+    @reservation = Reservation.new
   end
   def edit
   end
