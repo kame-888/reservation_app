@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
-  resources :rooms
   get "home/index"
   get "home/search", to: "home#search"
   resources :rooms do
@@ -9,8 +8,8 @@ Rails.application.routes.draw do
       post :confirm, on: :collection
     end
   end
+  resources :reservations, only: [:index, :destroy]
   root "home#index"
-
 
   get "up" => "rails/health#show", as: :rails_health_check
 

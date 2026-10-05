@@ -32,30 +32,29 @@
       </div>
     </div>
     
-    <% if current_user %>
-      <div class="text-center my-4">
-        <%= link_to "編集", edit_room_path(@room), class: "btn btn-info btn-lg" %>
-        <%= link_to "削除", @room, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-lg" %>
-        <%= link_to "一覧へ戻る", :back, class: "btn btn-secondary btn-lg" %>
-      </div>
-    <% else %>
-      <%= form_with model: @reservation, url: confirm_room_reservations_path(@room), method: :post do |f| %>
-        <div class="form-group">
-          <%= form.label :checkin_at, "チェックイン", class:"control-label" %>
-          <%= form.date_field :checkin_at, class:"form-control" %>
-        </div>
-        <div class="form-group">
-          <%= form.label :checkout_at, "チェックアウト", class:"control-label" %>
-          <%= form.date_field :checkout_at, class:"form-control" %>
-        </div>
-        <div class="form-group">
-          <%= form.label :name, "人数", class:"control-label" %>
-          <%= form.number_field :guest_count, class:"form-control" %>
-        </div>
-        <%= form.submit "確認画面へ", class:"btn btn-success" %>
+    <%= form_with model: @reservation, url: confirm_room_reservations_path(@room), method: :post,  data: { turbo: false } do |f| %>
+      <%# エラーメッセージ表示 %>
+      <% if @reservation.errors.any? %>
+        <ul class="errors">
+          <% @reservation.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
       <% end %>
-
+      
+      <div class="form-group">
+        <%= f.label :checkin_at, "チェックイン", class:"control-label" %>
+        <%= f.date_field :checkin_at, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :checkout_at, "チェックアウト", class:"control-label" %>
+        <%= f.date_field :checkout_at, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "人数", class:"control-label" %>
+        <%= f.number_field :guest_count, class:"form-control" %>
+      </div>
+      <%= f.submit "確認画面へ", class:"btn btn-success" %>
     <% end %>
-
   </div>
 </div>
