@@ -5,6 +5,10 @@
       <div class="text-center mb-4">
         <%= image_tag @room.image, class: "img-fluid rounded" %>
       </div>
+    <% else %>
+      <div class="text-center mb-4">
+        <%= image_tag "default-image.png", class: "img-fluid rounded" %>
+      </div>
     <% end %>
 
     <div class="text-center border-bottom pb-2 mb-4">

@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      redirect_to room_path(@room), notice: "更新しました", status: :see_other
+      redirect_to rooms_path, notice: "更新しました", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
