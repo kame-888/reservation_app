@@ -5,7 +5,7 @@ class Room < ApplicationRecord
 
   scope :search, ->(keyword) {
     if keyword.present?
-      where("name LIKE :kw OR address LIKE :kw", kw: "%#{keyword}%")
+      where("address LIKE :kw", kw: "%#{keyword}%")
     end
   }
 end

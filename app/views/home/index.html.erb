@@ -1,4 +1,14 @@
-<%= form_with url: home_search_path, method: :get do %>
-  <%= text_field_tag :keyword, params[:keyword] %>
-  <%= submit_tag "検索" %>
-<% end %>
+<div class="card text-white">
+  <%= image_tag "home_image.jpg", class: "img-fluid card-img" %>
+  <div class="card-img-overlay d-flex">
+    <div class="m-auto">
+      <h1 class="card-title">今日はここに、明日はそこに</h1>
+      <%= form_with url: home_search_path, method: :get do %>
+        <%= text_field_tag :keyword, params[:keyword], placeholder: "エリア名で検索", class: "form-control" %>
+        <div class="d-flex justify-content-center mt-3">  
+          <%= submit_tag "検索", class: "btn btn-success btn-lg w-50 text-white" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

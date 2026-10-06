@@ -37,8 +37,9 @@
 
   <% if form.object.new_record? %>
     <%= form.submit "登録", class:"btn btn-success" %>
+    <%= link_to "キャンセル", root_path, class: "btn btn-default" %>
   <% else %>
     <%= form.submit "更新", class:"btn btn-success" %>
+    <%= link_to "キャンセル", rooms_path, class: "btn btn-default" %>
   <% end %>
-  <%= link_to "キャンセル", root_path, class: "btn btn-default" %>
 <% end %>
