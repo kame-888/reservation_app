@@ -5,6 +5,8 @@
 
         <% if room.image.attached? %>
           <%= image_tag room.image, class: "card-img-top" %>
+        <% else %>
+          <%= image_tag "default-image.png", class: "card-img-top" %>
         <% end %>
 
         <div class="card-body">

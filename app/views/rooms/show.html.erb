@@ -59,6 +59,7 @@
         <%= f.number_field :guest_count, class:"form-control" %>
       </div>
       <%= f.submit "確認画面へ", class:"btn btn-success" %>
+      <%= link_to "キャンセル", back_to_list_path, class: "btn btn-default" %>
     <% end %>
   </div>
 </div>
