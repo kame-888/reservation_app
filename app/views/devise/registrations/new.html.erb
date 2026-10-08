@@ -5,7 +5,19 @@
 
       <div class="card-body">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="mb-3 mt-4">
+            <%= f.text_field :first_name, class: "form-control", placeholder: "名前" %>
+          </div>
+
+          <div class="mb-3 mt-4">
+            <%= f.text_field :family_name, class: "form-control", placeholder: "苗字" %>
+          </div>
+          
           <%= render "form", f: f, password_placeholder: "パスワード" %>
+
+          <div class="mb-3">
+            <%= f.file_field :avatar, class: "form-control" %>
+          </div>
 
           <%= f.submit "サインアップ", class: "btn btn-primary w-100" %>
         <% end %>

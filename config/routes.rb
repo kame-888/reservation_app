@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
   get "home/index"
   get "home/search", to: "home#search"
   resources :rooms do
