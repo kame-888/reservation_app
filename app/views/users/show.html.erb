@@ -1,8 +1,18 @@
-<h1>こんにちは <%= @user.full_name %>さん</h1>
-<p>メール：<%= @user.email %></p>
-<p>パスワード：*********</p>
+<div class="card text-center pt-5 mx-auto" style="width: 23rem;">
+  <h1>こんにちは <%= @user.full_name %>さん</h1>
 
-<% if @user == current_user %>
-  <%= link_to "アカウント情報の編集", edit_user_registration_path %>
-  <%= link_to "プロフィールの更新", edit_user_path %>
-<% end %>
+  <div class="card-body">
+      <div class="mb-3 mt-4">
+        <p>メール：<%= @user.email %></p>
+      </div>
+      <div class="mb-3 mt-4">
+        <p>パスワード：*********</p>
+      </div>
+
+      <% if @user == current_user %>
+        <%= link_to "アカウント情報の編集", edit_user_registration_path, class: "btn btn-primary" %>
+        <%= link_to "プロフィールの更新", edit_user_path, class: "btn btn-primary" %>
+      <% end %>
+
+  </div>
+</div>

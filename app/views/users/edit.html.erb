@@ -1,27 +1,29 @@
 <div class="card text-center pt-5 mx-auto" style="width: 23rem;">
-      <h1>アカウント情報更新</h1>
+  <h1>アカウント情報更新</h1>
 
-      <div class="card-body">
-       <%= form_with model: @user do |f| %>
-          <div class="mb-3 mt-4">
-            <%= f.text_field :first_name, class: "form-control", placeholder: "名前" %>
-          </div>
-
-          <div class="mb-3 mt-4">
-            <%= f.text_field :family_name, class: "form-control", placeholder: "苗字" %>
-          </div>
-
-          <div class="mb-3">
-            <%= f.file_field :avatar, class: "form-control" %>
-          </div>
-
-          <%= f.submit "アカウントの更新", class: "btn btn-primary w-100" %>
-        <% end %>
-
-        <% if notice %>
-          <p class="notice"><%= notice %></p>
-        <% elsif alert %>
-          <p class="alert"><%= alert %></p>
-        <% end %>
+  <div class="card-body">
+    <%= form_with model: @user do |f| %>
+      <div class="mb-3 mt-4">
+        <%= f.text_field :first_name, class: "form-control", placeholder: "名前" %>
       </div>
-    </div>
+
+      <div class="mb-3 mt-4">
+        <%= f.text_field :family_name, class: "form-control", placeholder: "苗字" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.file_field :avatar, class: "form-control" %>
+      </div>
+
+      <%= f.submit "アカウントの更新", class: "btn btn-primary w-100" %>
+    <% end %>
+
+    <%= link_to "戻る", user_path(@user), class: "btn btn-link mt-3" %>
+
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% elsif alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+  </div>
+</div>
