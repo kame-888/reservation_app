@@ -10,7 +10,7 @@
 </div>
 <table class="table">
   <tr>
-    <th>施設画像</th><th>施設名</th><th>紹介文</th><th>金額</th>
+    <th>施設画像</th><th>施設名</th><th>詳細</th><th>宿泊料金</th><th>作成日</th>
   </tr>
   <% @rooms.each do |room| %>
     <tr>
@@ -22,13 +22,16 @@
         <% end %>
       </td>
       <td>
-        <%= room.name %>
+        <%= link_to room.name, room_path(room), class: "text-decoration-none" %>
       </td>
       <td>
         <%= room.description %>
       </td>
       <td>
         <%= room.price %>
+      </td>
+      <td>
+        <%= room.created_at.strftime("%Y/%m/%d") %>
       </td>
       <td>
         <%= link_to "編集", edit_room_path(room), class:"btn btn-secondary" %>

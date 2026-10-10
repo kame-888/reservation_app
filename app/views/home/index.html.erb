@@ -1,13 +1,43 @@
-<div class="card text-white">
+<div class="card text-white w-100">
   <%= image_tag "home_image.jpg", class: "img-fluid card-img w-100" %>
   <div class="card-img-overlay d-flex">
     <div class="m-auto">
       <h1 class="card-title">今日はここに、明日はそこに</h1>
       <%= form_with url: home_search_path, method: :get do %>
         <%= text_field_tag :keyword, params[:keyword], placeholder: "エリア名で検索", class: "form-control" %>
+        <%= text_field_tag :free_word, params[:free_word], placeholder: "フリーワード検索", class: "form-control" %>
         <div class="d-flex justify-content-center mt-3">  
           <%= submit_tag "検索", class: "btn btn-success btn-lg w-50 text-white" %>
         </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <h3>東京</h3>
+      <%= link_to home_search_path(keyword: "東京都") do %>
+        <%= image_tag "tokyo_image.jpg", class: "img-fluid rounded city-img" %>
+      <% end %>
+    </div>
+    <div class="col-sm-3">
+      <h3>大阪</h3>
+      <%= link_to home_search_path(keyword: "大阪府") do %>
+        <%= image_tag "osaka_image.jpg", class: "img-fluid rounded city-img" %>
+      <% end %>
+    </div>
+    <div class="col-sm-3">
+      <h3>京都</h3>
+      <%= link_to home_search_path(keyword: "京都府") do %>
+        <%= image_tag "kyoto_image.jpg", class: "img-fluid rounded city-img" %>
+      <% end %>
+    </div>
+    <div class="col-sm-3">
+      <h3>北海道</h3>
+      <%= link_to home_search_path(keyword: "北海道") do %>
+        <%= image_tag "hokkaido_image.jpg", class: "img-fluid rounded city-img" %>
       <% end %>
     </div>
   </div>
