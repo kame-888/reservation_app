@@ -4,18 +4,18 @@ class ReservationsController < ApplicationController
 
   def confirm
     @reservation = build_reservation
-    render "rooms/show", status: :unprocessable_entity if @reservation.invalid?
+    render "rooms/show", status: :unprocessable_content if @reservation.invalid?
   end
 
   def create
     @reservation = build_reservation
 
-    return render "rooms/show", status: :unprocessable_entity if params[:back]
+    return render "rooms/show", status: :unprocessable_content if params[:back]
 
     if @reservation.save
       redirect_to reservations_path, notice: "予約が完了しました"
     else
-      render "rooms/show", status: :unprocessable_entity
+      render "rooms/show", status: :unprocessable_content
     end
   end
 

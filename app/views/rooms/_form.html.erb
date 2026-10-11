@@ -1,3 +1,5 @@
+<%= flash[:notice] %>
+
 <%= form_with model: @room do |form| %>
   <%# エラーメッセージ表示 %>
   <% if @room.errors.any? %>
@@ -7,8 +9,6 @@
       <% end %>
     </ul>
   <% end %>
-
-  <%= flash[:notice] %>
 
   <div class="form-group">
     <%= form.label :name, "施設名", class:"control-label" %>
