@@ -20,9 +20,10 @@ class ReservationsController < ApplicationController
   end
 
   def index
-    @reservations = current_user.reservations.includes(room: { image_attachment: :blob }).order(created_at: :desc)
+    @reservations = current_user.reservations
+                                .includes(room: { image_attachment: :blob })
+                                .order(created_at: :desc)
   end
-
   def destroy
     @reservation = current_user.reservations.find(params[:id])
     @reservation.destroy

@@ -18,5 +18,7 @@ module ReservationApp
 
     # ロケールを日本語に
     config.i18n.default_locale = :ja
+
+         config.active_storage.variant_processor = :mini_magick
   end
 end

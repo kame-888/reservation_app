@@ -25,6 +25,10 @@ gem "fiddle"
 
 gem "bullet"
 
+gem "image_processing", "~> 1.2"
+
+gem "mini_magick"
+
 gem "devise-i18n"
 
 gem "rails-i18n"

@@ -5,3 +5,38 @@
   height: 200px;
   object-fit: cover;
 }
+
+.hero-img {
+  height: 60vh;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.city-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.room-card-img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.room-card-description {
+  min-height: 60px;
+}
+
+.room-show-img {
+  max-height: 480px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.room-description {
+  min-height: 60px;
+}

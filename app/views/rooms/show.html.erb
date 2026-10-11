@@ -1,65 +1,88 @@
 <div class="row">
   <div class="col-md-8 offset-md-2">
 
-    <% if @room.image.attached? %>
-      <div class="text-center mb-4">
-        <%= image_tag @room.image, class: "img-fluid rounded" %>
-      </div>
-    <% else %>
-      <div class="text-center mb-4">
-        <%= image_tag "default-image.png", class: "img-fluid rounded" %>
-      </div>
-    <% end %>
+    <div class="text-center mb-4">
+      <% if @room.image.attached? && @room.image.variable? %>
+        <%= image_tag @room.image, alt: "#{@room.name}の写真", class: "img-fluid rounded room-show-img" %>
+      <% elsif @room.image.attached? %>
+        <%= image_tag @room.image, alt: "#{@room.name}の写真", class: "img-fluid rounded room-show-img" %>
+      <% else %>
+        <%= image_tag "default-image.png", alt: "写真は未登録です", class: "img-fluid rounded room-show-img" %>
+      <% end %>
+    </div>
 
     <div class="text-center border-bottom pb-2 mb-4">
-      <h2><%= @room.name %></h2>
+      <h1 class="h2"><%= @room.name %></h1>
     </div>
 
     <div class="card mb-3">
       <div class="card-header fw-bold">紹介文</div>
-      <div class="card-body fs-5" style="min-height: 60px;">
+      <div class="card-body room-description">
         <%= simple_format(@room.description) %>
       </div>
     </div>
 
-    <div class="card mb-3">
-      <div class="card-header fw-bold">住所</div>
-      <div class="card-body text-center">
-        <h3 class="mb-0"><%= @room.address %></h3>
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header fw-bold">住所</div>
+          <div class="card-body text-center">
+            <p class="h5 mb-0"><%= @room.address %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header fw-bold">金額</div>
+          <div class="card-body text-center">
+            <p class="h5 mb-0">
+              <%= number_to_currency(@room.price, unit: "円", format: "%n%u", precision: 0) %>〜
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="card mb-3">
-      <div class="card-header fw-bold">金額</div>
-      <div class="card-body text-center">
-        <h3 class="mb-0"><%= number_to_currency(@room.price, unit: "円", format: "%n%u", precision: 0) %></h3>
-      </div>
-    </div>
-    
-    <%= form_with model: @reservation, url: confirm_room_reservations_path(@room), method: :post,  data: { turbo: false } do |f| %>
-      <%# エラーメッセージ表示 %>
-      <% if @reservation.errors.any? %>
-        <ul class="errors">
-          <% @reservation.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
+    <% if current_user %>
+      <h2 class="h4 mb-3">予約する</h2>
+
+      <%= form_with model: @reservation, url: confirm_room_reservations_path(@room),
+                    method: :post, data: { turbo: false } do |f| %>
+        <% if @reservation.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <ul class="mb-0">
+              <% @reservation.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= f.label :checkin_at, "チェックイン", class: "form-label" %>
+          <%= f.date_field :checkin_at, min: Date.current, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :checkout_at, "チェックアウト", class: "form-label" %>
+          <%= f.date_field :checkout_at, min: Date.current, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :guest_count, "人数", class: "form-label" %>
+          <%= f.number_field :guest_count, min: 1, class: "form-control" %>
+        </div>
+
+        <div class="d-flex gap-2">
+          <%= f.submit "確認画面へ", class: "btn btn-success" %>
+          <%= link_to "キャンセル", request.referer || root_path, class: "btn btn-outline-secondary" %>
+        </div>
       <% end %>
-      
-      <div class="form-group">
-        <%= f.label :checkin_at, "チェックイン", class:"control-label" %>
-        <%= f.date_field :checkin_at, class:"form-control" %>
+    <% else %>
+      <div class="alert alert-info text-center">
+        <p class="mb-2">予約するにはサインインが必要です。</p>
+        <%= link_to "サインイン", new_user_session_path, class: "btn btn-info me-2" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
       </div>
-      <div class="form-group">
-        <%= f.label :checkout_at, "チェックアウト", class:"control-label" %>
-        <%= f.date_field :checkout_at, class:"form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :guest_count, "人数", class:"control-label" %>
-        <%= f.number_field :guest_count, class:"form-control" %>
-      </div>
-      <%= f.submit "確認画面へ", class:"btn btn-success" %>
-      <%= link_to "キャンセル", back_to_list_path, class: "btn btn-default" %>
     <% end %>
+
   </div>
 </div>

@@ -1,6 +1,9 @@
 class Room < ApplicationRecord
   belongs_to :user
-  has_one_attached :image
+  has_one_attached :image do |attachable|
+    attachable.variant :thumb, resize_to_fill: [80, 80], format: :jpeg, preprocessed: true
+    attachable.variant :card,  resize_to_fill: [800, 600], format: :jpeg, preprocessed: true
+  end
   has_many :reservations, dependent: :destroy
 
   validates :name, presence: true
