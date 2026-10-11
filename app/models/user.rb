@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :rooms, dependent: :destroy
   has_many :reservations, dependent: :destroy
 
+  validates :first_name, presence: true
+  validates :family_name, presence: true
+
   def full_name
         "#{family_name} #{first_name}"
     end

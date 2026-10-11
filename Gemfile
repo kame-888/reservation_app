@@ -16,8 +16,6 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-# Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
 
 gem "json", "~> 2.7.2"
 
@@ -27,17 +25,16 @@ gem "fiddle"
 
 gem "bullet"
 
+gem "devise-i18n"
+
+gem "rails-i18n"
+
 # Use Bootstrap
 gem 'bootstrap', '~> 5.3.2'
+
 gem 'jquery-rails'
 
 gem "sassc-rails"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -57,6 +54,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 
 group :development do
