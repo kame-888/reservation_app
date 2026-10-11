@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: [:create, :confirm]
+  before_action :set_room, only: [ :create, :confirm ]
 
   def confirm
     @reservation = build_reservation

@@ -34,9 +34,9 @@ gem "devise-i18n"
 gem "rails-i18n"
 
 # Use Bootstrap
-gem 'bootstrap', '~> 5.3.2'
+gem "bootstrap", "~> 5.3.2"
 
-gem 'jquery-rails'
+gem "jquery-rails"
 
 gem "sassc-rails"
 

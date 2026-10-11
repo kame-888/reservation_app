@@ -15,5 +15,4 @@ class HomeController < ApplicationController
       @rooms = @rooms.where("name LIKE :fw OR description LIKE :fw", fw: fw).with_attached_image
     end
   end
-
 end

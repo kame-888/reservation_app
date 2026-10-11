@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [ :show, :edit, :update ]
   get "home/index"
   get "home/search", to: "home#search"
   resources :rooms do
-    resources :reservations, only: [:create] do
+    resources :reservations, only: [ :create ] do
       post :confirm, on: :collection
     end
   end
-  resources :reservations, only: [:index, :destroy]
+  resources :reservations, only: [ :index, :destroy ]
   root "home#index"
 
   get "up" => "rails/health#show", as: :rails_health_check

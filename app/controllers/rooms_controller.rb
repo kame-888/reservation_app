@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :set_room_id, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_owner!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [ :show ]
+  before_action :set_room_id, only: [ :show, :edit, :update, :destroy ]
+  before_action :authorize_owner!, only: [ :edit, :update, :destroy ]
 
   def new
     @room = Room.new

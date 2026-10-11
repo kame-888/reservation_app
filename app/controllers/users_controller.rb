@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user_id
-  before_action :authorize_self!, only: [:edit, :update]
+  before_action :authorize_self!, only: [ :edit, :update ]
 
-  #before_actionでidを先に取得
+  # before_actionでidを先に取得
   def show
   end
 
