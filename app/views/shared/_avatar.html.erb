@@ -1,0 +1,11 @@
+<% size = local_assigns.fetch(:size, 40) %>
+<% if user.avatar.attached? %>
+  <%= image_tag user.avatar,
+                alt: "#{user.full_name}のアイコン",
+                class: "rounded-circle object-fit-cover",
+                width: size, height: size %>
+<% else %>
+  <%= image_tag "default-image.png", alt: "デフォルトのアイコン",
+                class: "rounded-circle object-fit-cover",
+                width: size, height: size %>
+<% end %>

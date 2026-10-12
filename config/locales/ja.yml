@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+    attributes:
+      user:
+        first_name: 名前
+        family_name: 苗字
+        email: メールアドレス
+        age: 年齢
+      room:
+        name: 施設名
+        description: 詳細
+        address: 住所
+        price: 宿泊料金

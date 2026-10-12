@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">登録済み施設一覧</h1>
+  <%= link_to "新規登録", new_room_path, class: "btn btn-primary" %>
+</div>
+
+<% if @rooms.empty? %>
+  <p class="text-center text-muted my-5">登録済みの施設はまだありません。</p>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th scope="col">施設画像</th>
+          <th scope="col">施設名</th>
+          <th scope="col">詳細</th>
+          <th scope="col">宿泊料金</th>
+          <th scope="col">作成日</th>
+          <th scope="col"><span class="visually-hidden">操作</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td>
+              <% if room.image.attached? && room.image.variable? %>
+                <%= image_tag room.image, alt: "#{room.name}の写真", loading: "lazy",
+                              class: "rounded object-fit-cover", width: 40, height: 40 %>
+              <% elsif room.image.attached? %>
+                <%= image_tag room.image, alt: "#{room.name}の写真", loading: "lazy",
+                              class: "rounded object-fit-cover", width: 40, height: 40 %>
+              <% else %>
+                <%= image_tag "default-image.png", alt: "写真は未登録です", loading: "lazy",
+                              class: "rounded object-fit-cover", width: 40, height: 40 %>
+              <% end %>
+            </td>
+            <td><%= link_to room.name, room_path(room), class: "text-decoration-none" %></td>
+            <td><%= truncate(room.description, length: 40) %></td>
+            <td class="text-nowrap">
+              <%= number_to_currency(room.price, unit: "円", format: "%n%u", precision: 0) %>
+            </td>
+            <td class="text-nowrap"><%= room.created_at.strftime("%Y/%m/%d") %></td>
+            <td class="text-nowrap">
+              <%= link_to "編集", edit_room_path(room), class: "btn btn-sm btn-outline-secondary" %>
+              <%= link_to "削除", room,
+                          data: { turbo_method: :delete, turbo_confirm: "宿泊施設を削除しますか？" },
+                          class: "btn btn-sm btn-outline-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

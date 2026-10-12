@@ -1,0 +1,15 @@
+<h1>この内容で予約しますか？</h1>
+<p>期間: <%= @reservation.checkin_at %> 〜 <%= @reservation.checkout_at %></p>
+<p>人数: <%= @reservation.guest_count %>名</p>
+<p>金額: <%= number_to_currency(@reservation.total, unit: "円", format: "%n%u", precision: 0) %></p>
+
+<%= form_with model: @reservation,
+              url: room_reservations_path(@room),
+              method: :post do |f| %>
+  <%= f.hidden_field :checkin_at %>
+  <%= f.hidden_field :checkout_at %>
+  <%= f.hidden_field :guest_count %>
+
+  <%= f.submit "予約を確定する" %>
+  <%= f.submit "戻る", name: "back" %>
+<% end %>

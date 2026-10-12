@@ -1,0 +1,57 @@
+class RoomsController < ApplicationController
+  before_action :authenticate_user!, except: [ :show ]
+  before_action :set_room_id, only: [ :show, :edit, :update, :destroy ]
+  before_action :authorize_owner!, only: [ :edit, :update, :destroy ]
+
+  def new
+    @room = Room.new
+  end
+
+  def create
+    @room = current_user.rooms.build(room_params)
+
+    if @room.save
+      redirect_to rooms_path, notice: "宿泊施設情報を作成しました"
+    else
+      render :new, status: :unprocessable_content
+    end
+  end
+
+  def index
+    @rooms = current_user.rooms.with_attached_image.order(created_at: :desc)
+  end
+
+  # before_actionでIDはセット済み
+  def show
+    @reservation = Reservation.new
+  end
+  def edit
+  end
+
+  def update
+    if @room.update(room_params)
+      redirect_to rooms_path, notice: "更新しました", status: :see_other
+    else
+      render :edit, status: :unprocessable_content
+    end
+  end
+
+  def destroy
+    @room.destroy
+    redirect_to rooms_path, notice: "登録施設を削除しました", status: :see_other
+  end
+
+  private
+
+  def set_room_id
+    @room = Room.find(params[:id])
+  end
+
+  def room_params
+    params.require(:room).permit(:name, :description, :price, :address, :image)
+  end
+
+  def authorize_owner!
+    redirect_to root_path, alert: "権限がありません" unless @room.user_id == current_user.id
+  end
+end
